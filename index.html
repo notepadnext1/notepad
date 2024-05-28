@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable HTML Page with Persistence</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+        }
+        p {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+<h1>MY NOTEPAD ~ Anmol</h1>
+<div class="container" contenteditable="true" id="editableContent">
+    <h1 contenteditable="true">Welcome to My Editable HTML Page</h1>
+    <p contenteditable="true">This is an editable HTML page written in Notepad.</p>
+    <p contenteditable="true">You can edit this file directly in the browser. Just click on any text to start editing.</p>
+</div>
+
+<script>
+    // Retrieve content from local storage when the page loads
+    document.addEventListener("DOMContentLoaded", function() {
+        var editableContent = document.getElementById("editableContent");
+        if (localStorage.getItem("htmlContent")) {
+            editableContent.innerHTML = localStorage.getItem("htmlContent");
+        }
+    });
+
+    // Store content in local storage whenever it changes
+    var editableContent = document.getElementById("editableContent");
+    editableContent.addEventListener("input", function() {
+        localStorage.setItem("htmlContent", editableContent.innerHTML);
+    });
+</script>
+
+</body>
+</html>
